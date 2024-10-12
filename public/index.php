@@ -1,7 +1,7 @@
 <?php
 /*
- * Application: DbM Framework v2
- * Author: Arthur Malinowsky (Design by Malina)
+ * Application: DbM Framework v2.1
+ * Author: Arthur Malinowski (Design by Malina)
  * License: MIT
  * Web page: www.dbm.org.pl
  * Contact: biuro@dbm.org.pl

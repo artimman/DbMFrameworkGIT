@@ -1,7 +1,7 @@
 <?php
 /*
  * Application: DbM Framework v2.1
- * Author: Arthur Malinowsky (Design by Malina)
+ * Author: Arthur Malinowski (Design by Malina)
  * License: MIT
  * Web page: www.dbm.org.pl
  * Contact: biuro@dbm.org.pl
@@ -28,12 +28,16 @@ class Database implements DatabaseInterface
         $dbName = getenv('DB_NAME');
         $dbUser = getenv('DB_USER');
         $dbPassword = getenv('DB_PASSWORD');
+        $dbCharset = getenv('DB_CHARSET') ?: 'utf8mb4';
 
         try {
             $dbDSN = "mysql:host=" . $dbHost . ";dbname=" . $dbName;
             $dbOptions = [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                PDO::ATTR_EMULATE_PREPARES => false,
+                PDO::ATTR_STRINGIFY_FETCHES => false,
+                PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES " . $dbCharset,
             ];
 
             $this->connect = new PDO($dbDSN, $dbUser, $dbPassword, $dbOptions);

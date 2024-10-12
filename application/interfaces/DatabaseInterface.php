@@ -1,7 +1,7 @@
 <?php
 /*
  * Application: DbM Framework v2.1
- * Author: Arthur Malinowsky (Design by Malina)
+ * Author: Arthur Malinowski (Design by Malina)
  * License: MIT
  * Web page: www.dbm.org.pl
  * Contact: biuro@dbm.org.pl
@@ -32,4 +32,8 @@ interface DatabaseInterface
     public function debugDumpParams(): ?string;
 
     public function getLastInsertId(): ?string;
+
+    public function buildInsertQuery(array $data): array;
+
+    public function buildUpdateQuery(array $data): array;
 }

@@ -15,7 +15,7 @@ DbM Landing Pages - System on text files, yours offer
                     <div class="col-md-8 dbm-box-item-dsc">
                         <h2 class="title"><a href="the-best-offer.offer.html">[Video|LinkSEOHtml] The Best Offer</a></h2>
                         <div class="d-flex flex-wrap justify-content-between text-xs details">
-                            <p>By <a href="user.1.html" class="link-dark">Arthur Malinowsky</a></p>
+                            <p>By <a href="user.1.html" class="link-dark">Arthur Malinowski</a></p>
                         </div>
                         <div>Quickly build an effective pricing table for your potential customers with this Bootstrap example. It’s built with default Bootstrap components and utilities with little customization. Quickly build an effective pricing table for your potential customers with this Bootstrap example. It’s built with default Bootstrap components and utilities with little customization. Quickly build an effective pricing table for your potential customers with this Bootstrap example. It’s built with default Bootstrap components and utilities with little customization. Quickly build an effective pricing table for your potential customers with this Bootstrap example.</div>
                     </div>
@@ -27,7 +27,7 @@ DbM Landing Pages - System on text files, yours offer
                     <div class="col-md-8 dbm-box-item-dsc">
                         <h2 class="title"><a href="itaque-ad-tempus-ad-pisonem-omnes.offer.html">[LinkSEOHtml] Itaque ad tempus ad Pisonem omnes</a></h2>
                         <div class="d-flex flex-wrap justify-content-between text-xs details">
-                            <p>By <a href="#" class="link-dark">Arthur Malinowsky</a></p>
+                            <p>By <a href="#" class="link-dark">Arthur Malinowski</a></p>
                         </div>
                         <div>Quickly build an effective pricing table for your potential customers with this Bootstrap example. It’s built with default Bootstrap components and utilities with little customization. Quickly build an effective pricing table for your potential customers with this Bootstrap example. It’s built with default Bootstrap components and utilities with little customization. Quickly build an effective pricing table for your potential customers with this Bootstrap example. It’s built with default Bootstrap components and utilities with little customization. Quickly build an effective pricing table for your potential customers with this Bootstrap example.</div>
                     </div>
