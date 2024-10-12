@@ -1,10 +1,9 @@
 <?php
 /*
- * Application: DbM Framework v2.1
- * Author: Arthur Malinowski (Design by Malina)
- * License: MIT
+ * Application: DbM Framework version 2
+ * Author: Arthur Malinowski (C) Design by Malina
  * Web page: www.dbm.org.pl
- * Contact: biuro@dbm.org.pl
+ * License: MIT
  *
  * Used Lightweight Template Engine with PHP; Modified for DbM Framework
  * Homepage: https://codeshack.io/lightweight-template-engine-php/
