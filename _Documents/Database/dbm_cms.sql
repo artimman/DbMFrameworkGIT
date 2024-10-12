@@ -106,7 +106,7 @@ CREATE TABLE `dbm_user` (
   `login` varchar(64) NOT NULL,
   `email` varchar(180) NOT NULL,
   `password` varchar(128) NOT NULL,
-  `roles` varchar(9) NOT NULL DEFAULT 'USER',
+  `roles` varchar(10) NOT NULL DEFAULT 'USER',
   `token` varchar(50) DEFAULT NULL,
   `verified` tinyint(1) NOT NULL DEFAULT '0',
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -117,7 +117,7 @@ CREATE TABLE `dbm_user` (
 --
 
 INSERT INTO `dbm_user` (`id`, `login`, `email`, `password`, `roles`, `token`, `verified`, `created`) VALUES
-(1, 'Malina', 'archie@mail.com', '$2y$10$30xGoLBAGXNwt5mSb2CU0uJ/hsrHlHVHCsWo3TF2wXGWVuqw3PR/m', 'ADMIN', '50a9ead33e94f4b56cd9475483ce9105e8a5bf6f', 1, '2021-01-01 12:00:00'),
+(1, 'Admin', 'admin@mail.com', '$2y$10$30xGoLBAGXNwt5mSb2CU0uJ/hsrHlHVHCsWo3TF2wXGWVuqw3PR/m', 'ADMIN', '50a9ead33e94f4b56cd9475483ce9105e8a5bf6f', 1, '2021-01-01 12:00:00'),
 (2, 'John', 'john@mail.com', '$2y$10$YENFQ6axxkDxPyvhEYLBX.ld46LupE6sO7to91glQL0ZxU9XyA.yK', 'USER', '545932a772cae4455b882a4cb6551c7ba0c7b6a3', 1, '2021-01-02 12:00:00'),
 (3, 'Lucy', 'lucy@mail.com', '$2y$10$YENFQ6axxkDxPyvhEYLBX.ld46LupE6sO7to91glQL0ZxU9XyA.yK', 'USER', 'ac8fe01e8de57f4c0d1d54cc7a2bcd871d3f7dee', 0, '2021-01-03 12:00:00');
 
