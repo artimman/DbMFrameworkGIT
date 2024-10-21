@@ -5,13 +5,15 @@ deny from all
 </Files>
 
 <IfModule mod_rewrite.c>
- # Redirect to the public folder
+ # Enable mod_rewrite module
  RewriteEngine On
 
- # Rewrite Base; *ATTENTION Configure the path, example for localhost in dbmframework folder: /dbmframework/
+ # Base path for rules; *ATTENTION Configure the path, example for localhost in dbmframework folder: /dbmframework/
  RewriteBase /dbmframework/
 
- # RewriteBase /
+ # Redirecting tasks to the public directory
+ RewriteCond %{REQUEST_FILENAME} !-f
+ RewriteCond %{REQUEST_FILENAME} !-d
  RewriteRule ^$ public/ [L]
  RewriteRule (.*) public/$1 [L]
 </IfModule>

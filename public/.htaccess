@@ -5,21 +5,22 @@ deny from all
 </Files>
 
 <IfModule mod_rewrite.c>
+ # Enable mod_rewrite module
  RewriteEngine On
 
- # Redirect to HTTPS
- # RewriteCond %{HTTPS} off
- # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+ # If the above doesn't work you might need to set the `RewriteBase` directive manually
+ # Base path for rules; Configure the path, example for localhost in dbmframework folder: /dbmframework/public/
+ RewriteBase /
 
  # Some hosts may require you to use the `RewriteBase` directive.
  # RewriteCond %{REQUEST_URI}::$1 ^(/.+)/(.*)::\2$
  # RewriteRule ^(.*) - [E=BASE:%1]
 
- # If the above doesn't work you might need to set the `RewriteBase` directive manually
- # Rewrite Base; Configure the path, example for localhost in dbmframework folder: /dbmframework/public/
- RewriteBase /
- 
- # Rewrite Rule Request
+ # Redirect to HTTPS
+ # RewriteCond %{HTTPS} off
+ # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+ # Redirect to index.php if no file or directory is found
  RewriteCond %{REQUEST_FILENAME} !-f
  RewriteCond %{REQUEST_FILENAME} !-d
  RewriteRule ^(.*)$ index.php [QSA,L]
