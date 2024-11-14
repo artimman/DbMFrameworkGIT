@@ -146,16 +146,33 @@ class Database implements DatabaseInterface
         return $this->connect->lastInsertId();
     }
 
+    public function beginTransaction(): void
+    {
+        $this->connect->beginTransaction();
+    }
+
+    public function commit(): void
+    {
+        $this->connect->commit();
+    }
+
+    public function rollback(): void
+    {
+        $this->connect->rollBack();
+    }
+
     /**
-     * Method for building an INSERT query with 'null' value filtering
+     * Method for building an INSERT Query
      *
-     * How to use:
-     * public function insertMethod(array $data): bool
+     * How to use - full query with optional parameters
+     * [$filteredQuery, $filteredData] = $this->database->buildInsertQuery($data, 'dbm_invoice');
+     * $this->database->queryExecute($filteredQuery, $filteredData);
+     * or basic usage
      * [$columns, $placeholders, $filteredData] = $this->database->buildInsertQuery($data);
-     * $query = "INSERT INTO table_name ($columns) VALUES ($placeholders)";
-     * return $this->database->queryExecute($query, $filteredData);
+     * $filteredQuery = "INSERT INTO table_name ($columns) VALUES ($placeholders)";
+     * $this->database->queryExecute($filteredQuery, $filteredData);
      */
-    public function buildInsertQuery(array $data): array
+    public function buildInsertQuery(array $data, ?string $table = null): array
     {
         $filteredData = array_filter($data, function ($value) {
             return !is_null($value);
@@ -164,19 +181,28 @@ class Database implements DatabaseInterface
         $columns = implode(", ", array_keys($filteredData));
         $placeholders = ':' . implode(", :", array_keys($filteredData));
 
+        // Jeśli podano $table, budujemy pełne zapytanie
+        if ($table) {
+            $filteredQuery = "INSERT INTO $table ($columns) VALUES ($placeholders)";
+            return [$filteredQuery, $filteredData];
+        }
+
+        // Jeśli nie podano $table, zwracamy tylko kolumny i wartości
         return [$columns, $placeholders, $filteredData];
     }
 
     /**
-     * Method for building an UPDATE query with 'null' value filtering
+     * Method for building an UPDATE Query
      *
-     * How to use:
-     * public function updateSection($data): bool
+     * How to use - full query with optional parameters
+     * [$filteredQuery, $filteredData] = $this->database->buildUpdateQuery($data, 'dbm_invoice', 'id=:id');
+     * $this->database->queryExecute($filteredQuery, $filteredData);
+     * or basic usage
      * [$setClause, $filteredData] = $this->database->buildUpdateQuery($data);
-     * $query = "UPDATE table_name SET $setClause WHERE id=:id";
-     * return $this->database->queryExecute($query, $filteredData);
+     * $filteredQuery = "UPDATE table_name SET $setClause WHERE id=:id";
+     * $this->database->queryExecute($filteredQuery, $filteredData);
      */
-    public function buildUpdateQuery(array $data): array
+    public function buildUpdateQuery(array $data, ?string $table = null, ?string $condition = null): array
     {
         $filteredData = array_filter($data, function ($value) {
             return !is_null($value);
@@ -186,6 +212,19 @@ class Database implements DatabaseInterface
             return "$key=:$key";
         }, array_keys($filteredData)));
 
+        // Jeśli podano $table, budujemy pełne zapytanie
+        if ($table) {
+            $filteredQuery = "UPDATE $table SET $setClause";
+            
+            // Dodajemy warunek WHERE, jeśli podano $condition
+            if ($condition) {
+                $filteredQuery .= " WHERE $condition";
+            }
+            
+            return [$filteredQuery, $filteredData];
+        }
+
+        // Jeśli nie podano $table, zwracamy tylko część `SET`
         return [$setClause, $filteredData];
     }
 }

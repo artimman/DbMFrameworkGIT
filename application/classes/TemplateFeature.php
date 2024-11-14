@@ -367,4 +367,79 @@ class TemplateFeature
 
         return $path;
     }
+
+    /**
+     * Metoda generująca element <select> z opcjami. Zamien i usuń htmlSelect()
+     */
+    public function htmlCreateSelect(
+        array $options,
+        string $name,
+        ?string $identifier = null,
+        ?string $selected = null,
+        ?string $space = null,
+        bool $required = false,
+        string $sortOrder = 'null',
+        ?string $emptyOption = null,
+        ?int $size = null,
+        bool $multiple = false,
+        ?string $style = null,
+        string $class = 'form-control',
+    ): string {
+        // Identyfikator dla pola - jeśli nie jest podany, przyjmujemy nazwę
+        $identifier = $identifier ?? $name;
+
+        // Jeśli pole jest wielokrotnego wyboru, modyfikujemy nazwę jako tablicę
+        $selectName = $multiple ? $name . '[]' : $name;
+
+        // Dodanie spacji (liczba powtórzeń lub ciąg spacji)
+        $space = is_numeric($space) ? str_repeat('    ', (int)$space) : $space ?? '';
+
+        // Sortowanie opcji, jeśli wymagane
+        if (strtolower($sortOrder) === 'asc') {
+            asort($options);
+        } elseif (strtolower($sortOrder) === 'desc') {
+            arsort($options);
+        }
+
+        // Generowanie kodu HTML dla elementu <select>
+        $html = "<!-- htmlCreateSelect -->\n";
+        $html .= $space . "<select name=\"$selectName\" id=\"$identifier\"";
+
+        if ($class) {
+            $html .= " class=\"$class\"";
+        }
+
+        if ($style) {
+            $html .= " style=\"$style\"";
+        }
+
+        if ($size) {
+            $html .= " size=\"$size\"";
+        }
+
+        if ($multiple) {
+            $html .= " multiple";
+        }
+
+        if ($required) {
+            $html .= " required";
+        }
+
+        $html .= ">\n";
+
+        // Opcja pusta, jeśli podana
+        if ($emptyOption) {
+            $html .= $space . "    <option value=\"\">$emptyOption</option>\n";
+        }
+
+        // Generowanie opcji
+        foreach ($options as $key => $value) {
+            $isSelected = (is_array($selected) && in_array($key, $selected)) || $selected == $key ? ' selected' : '';
+            $html .= $space . "    <option value=\"$key\"$isSelected>$value</option>\n";
+        }
+
+        $html .= $space . "</select>\n";
+
+        return $html;
+    }
 }

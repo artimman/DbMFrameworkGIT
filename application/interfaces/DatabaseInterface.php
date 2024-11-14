@@ -32,7 +32,13 @@ interface DatabaseInterface
 
     public function getLastInsertId(): ?string;
 
-    public function buildInsertQuery(array $data): array;
+    public function beginTransaction(): void;
 
-    public function buildUpdateQuery(array $data): array;
+    public function commit(): void;
+
+    public function rollback(): void;
+
+    public function buildInsertQuery(array $data, ?string $table = null): array;
+
+    public function buildUpdateQuery(array $data, ?string $table = null, ?string $condition = null): array;
 }
