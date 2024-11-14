@@ -383,7 +383,7 @@ class TemplateFeature
         ?int $size = null,
         bool $multiple = false,
         ?string $style = null,
-        string $class = 'form-control',
+        string $class = 'form-control'
     ): string {
         // Identyfikator dla pola - jeśli nie jest podany, przyjmujemy nazwę
         $identifier = $identifier ?? $name;
