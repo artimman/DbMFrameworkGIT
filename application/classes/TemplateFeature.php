@@ -56,22 +56,30 @@ class TemplateFeature
      */
     public function trans(string $key, array $overwrite = [], array $sprint = null): string
     {
-        !empty($this->translation->arrayTranslation) ? $translation = $this->translation->arrayTranslation : $translation = null;
+        // Pobierz tłumaczenie
+        $translation = $this->translation->arrayTranslation ?? null;
 
-        if (!empty($translation)) {
+        // Sprawdź, czy istnieje tablica tłumaczeń
+        if ($translation) {
+            // Jeśli jest meta w overwrite, przypisz ją
             if (!empty($overwrite['meta'])) {
                 $overwrite = $overwrite['meta'];
             }
 
+            // Jeśli klucz jest w overwrite i translation, zwróć wartość z overwrite
             if (array_key_exists($key, $overwrite) && array_key_exists($key, $translation)) {
-                (!empty($sprint)) ? $value = vsprintf($overwrite[$key], $sprint) : $value = $overwrite[$key];
-
-                return $value;
-            } elseif (array_key_exists($key, $translation)) {
-                (!empty($sprint)) ? $value = vsprintf($translation[$key], $sprint) : $value = $translation[$key];
-
-                return $value;
+                return !empty($sprint) ? vsprintf($overwrite[$key], $sprint) : $overwrite[$key];
             }
+
+            // Jeśli klucz jest tylko w translation
+            if (array_key_exists($key, $translation)) {
+                return !empty($sprint) ? vsprintf($translation[$key], $sprint) : $translation[$key];
+            }
+        }
+
+        // Sprawdź, czy jest meta w overwrite, gdy brak tłumaczenia
+        if (!empty($overwrite['meta']) && array_key_exists($key, $overwrite['meta'])) {
+            return !empty($sprint) ? vsprintf($overwrite['meta'][$key], $sprint) : $overwrite['meta'][$key];
         }
 
         return $key;

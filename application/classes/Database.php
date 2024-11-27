@@ -215,12 +215,12 @@ class Database implements DatabaseInterface
         // Jeśli podano $table, budujemy pełne zapytanie
         if ($table) {
             $filteredQuery = "UPDATE $table SET $setClause";
-            
+
             // Dodajemy warunek WHERE, jeśli podano $condition
             if ($condition) {
                 $filteredQuery .= " WHERE $condition";
             }
-            
+
             return [$filteredQuery, $filteredData];
         }
 

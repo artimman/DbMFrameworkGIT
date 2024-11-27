@@ -1,5 +1,4 @@
 <?php
-
 // Translation (default Polish pl-PL)
 return [
     'lang' => "pl",
@@ -9,7 +8,7 @@ return [
     'meta.description' => "DbM Framework umożliwia tworzenie prostych i pięknych stron internetowych oraz rozbudowanych systemów o charakterze indywidualnego projektu.",
     'meta.keywords' => "dbmframework, dbm framework, php framework, mvc framework, flat text files, mysql, simple cms",
     'website.name' => "DbM Framework",
-    'website.footer' => "Copyright &copy; 2021-%s DbM Framework. Created %s",
+    'website.footer' => "&copy; 2021-%s Design by Malina.",
     // Words
     'login' => "Login",
     'email' => "E-mail",

@@ -120,4 +120,4 @@ Mailer for registration module (optional):
 
 * [PHPMailer](https://github.com/PHPMailer/PHPMailer) - Biblioteka do wysyłania e-maili.
 
-UWAGA! Wolna licencja wymaga umieszczenia linku do strony autora w widocznym miejscu, np. w stopce strony. Usunięcie linku jest naruszeniem licencji.
+**WAŻNE!** Korzystając z DbM Framework, proszę o dodanie na stronie (np. w stopce) tekstu z linkiem: "Created with <a href="https://dbm.org.pl/" title="DbM">DbM Framework</a>". Pamiętaj, aby podać źródło, z którego korzystasz. Dzięki temu wspierasz rozwój projektu!

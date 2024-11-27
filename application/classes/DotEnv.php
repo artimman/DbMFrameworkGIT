@@ -72,8 +72,8 @@ class DotEnv
      */
     private function cleanQuotes(string $value): string
     {
-        if ((str_starts_with($value, '"') && str_ends_with($value, '"')) ||
-            (str_starts_with($value, "'") && str_ends_with($value, "'"))) {
+        if ((substr($value, 0, 1) === '"' && substr($value, -1) === '"') ||
+            (substr($value, 0, 1) === "'" && substr($value, -1) === "'")) {
             return substr($value, 1, -1);
         }
         return $value;
@@ -111,4 +111,13 @@ class DotEnv
 
         return $value;
     } */
+
+    /* PHP 8: private function cleanQuotes(string $value): string
+    {
+        if ((str_starts_with($value, '"') && str_ends_with($value, '"')) ||
+            (str_starts_with($value, "'") && str_ends_with($value, "'"))) {
+            return substr($value, 1, -1);
+        }
+        return $value;
+    }*/
 }
